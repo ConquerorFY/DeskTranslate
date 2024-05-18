@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# Only works when your Windows scaling is set to 100% (other scalings might cause issues)
 
 import sys
 import ctypes
