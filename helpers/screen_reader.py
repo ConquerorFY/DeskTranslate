@@ -11,8 +11,7 @@ from deep_translator import (GoogleTranslator,
                              MyMemoryTranslator,
                              LingueeTranslator)
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
+pytesseract.pytesseract.tesseract_cmd = r"E:\Tesseract OCR\tesseract.exe"
 
 class Worker(QtCore.QObject):
     def __init__(self, snip_window, image_lang_code, trans_lang_code, is_text2speech_enabled, ui, translator_engine,
@@ -39,6 +38,7 @@ class Worker(QtCore.QObject):
         while self.running:
             img = ImageGrab.grab(bbox=(self.x1, self.y1, self.x2, self.y2))
             img = cv2.cvtColor(np.array(img), cv2.COLOR_BGR2GRAY)
+            # cv2.imwrite('img.jpg', img)
 
             new_extracted_text = pytesseract.image_to_string(img, lang=self.image_lang_code).strip()
             new_extracted_text = " ".join(new_extracted_text.split())
